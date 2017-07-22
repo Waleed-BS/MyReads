@@ -15,9 +15,14 @@ class Search extends Component {
   render() {
 
     const {query} = this.state
-    
-    return (
 
+    return (
+      /* todo:
+      - Fix the link to go back to the main page
+      - Search books by name and auther
+      - any category changes from the searched books
+        can affect the main page.
+      */
 
       <div className="search-books">
         <div className="search-books-bar">
