@@ -4,9 +4,20 @@ import { Link } from 'react-router-dom'
 
 class Search extends Component {
 
+  state = {
+    query: ''
+  }
+
+  updateQuery = () => {
+  return null;
+  }
+
   render() {
 
+    const {query} = this.state
+    
     return (
+
 
       <div className="search-books">
         <div className="search-books-bar">
