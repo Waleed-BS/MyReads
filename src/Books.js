@@ -25,6 +25,9 @@ class Books extends Component {
                 </div>
               </div>
               <div className="book-title">{book.title}</div>
+              {/*
+                todo: display authors for all books
+              */}
               <div className="book-authors">{book.author}</div>
             </div>
           </li>
