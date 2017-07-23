@@ -1,24 +1,21 @@
 import React, {Component} from 'react'
-
+import Books from './Books.js'
 
 class Bookshelf extends Component {
 
   render() {
 
-    const {category} = this.props.category
-    const {booksArray} = this.props.books
+    const { category, booksInShelf, onChangeShelf } = this.props
 
     return (
 
       <div className="bookshelf">
         <h2 className="bookshelf-title">{category}</h2>
         <div className="bookshelf-books">
-          <ol className="books-grid">
-            {/* todo: book component here */}
-
-          </ol>
+            <Books books={booksInShelf} onChangeShelf={onChangeShelf}/>
         </div>
       </div>
+
       /*
       <div className="bookshelf">
         <h2 className="bookshelf-title">Want to Read</h2>
