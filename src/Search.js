@@ -24,9 +24,17 @@ class Search extends Component {
         can affect the main page.
       */
 
+      /*
+      updatequery = (query) => {
+        BooksAPI.search(query, 10).then((booksFound) => {
+          this.setState({booksFound
+          });
+        })
+      }
+      */
       <div className="search-books">
         <div className="search-books-bar">
-          <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+          <Link className="close-search" to="/">Close</Link>
           <div className="search-books-input-wrapper">
             <input type="text" placeholder="Search by title or author"
               value= {query}
