@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import PropTypes from 'prop-types'
 
 class Books extends Component {
 
@@ -29,7 +29,8 @@ class Books extends Component {
             </div>
           </li>
         ))}
-        {/*
+      </ol>
+        /*
         <li>
           <div className="book">
             <div className="book-top">
@@ -48,8 +49,8 @@ class Books extends Component {
             <div className="book-authors">Harper Lee</div>
           </div>
         </li>
-        */}
-      </ol>
+        */
+
 
     )
 
