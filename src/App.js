@@ -6,8 +6,9 @@ import * as BooksAPI from './utils/BooksAPI'
 import './App.css'
 
 class BooksApp extends React.Component {
+
   state = {
-    booksArray: [],
+    booksArray: []
   }
 
   componentDidMount() {
@@ -16,13 +17,31 @@ class BooksApp extends React.Component {
     })
   }
 
-  onChangeShelf = (event) =>  {
-    BooksAPI.update({id: event.target.id}, event.target.value).then( () => {
-      BooksAPI.getAll().then( (books) => {
-        this.setState({booksArray: books})
+  // onChangeShelf = (event) =>  {
+  //   BooksAPI.update({id: event.target.id}, event.target.value).then( () => {
+  //     BooksAPI.getAll().then( (books) => {
+  //       this.setState({booksArray: books})
+  //     })
+  //   })
+  // }
+
+  onChangeShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(response => {
+      this.setState(state => {
+        booksArray: state.booksArray.filter(b => b.id !== book.id).concat([ book ])
       })
     })
   }
+
+  // BooksAPI.update(book, shelf).then(() => {
+  //       book.shelf = shelf
+  //
+  //       // Filter out the book and append it to the end of the list
+  //       // so it appears at the end of whatever shelf it was added to.
+  //       this.setState(state => ({
+  //         books: state.books.filter(b => b.id !== book.id).concat([ book ])
+  //       }))
+  //     })
 
   render() {
 
