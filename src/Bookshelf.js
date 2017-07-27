@@ -4,6 +4,12 @@ import PropTypes from 'prop-types'
 
 class Bookshelf extends Component {
 
+  static propTypes = {
+    category: PropTypes.string.isRequired,
+    booksInShelf: PropTypes.array.isRequired,
+    onChangeShelf: PropTypes.func.isRequired
+  }
+
   render() {
 
     const { category, booksInShelf, onChangeShelf } = this.props
