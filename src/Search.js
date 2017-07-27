@@ -14,6 +14,8 @@ class Search extends Component {
     foundBooks: []
   }
 
+  //  Look up a book you already have and check what shelf it's on in search
+  // You'll need to reconcile search and your shelves
   onSearch = (query) => {
 
     this.setState( {query: query} )
