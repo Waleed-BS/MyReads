@@ -15,13 +15,6 @@ class Search extends React.Component {
     foundBooks: []
   }
 
-
-  componentWillReceiveProps() {
-    BooksAPI.getAll().then( (books) => {
-      this.setState({booksArray: books})
-    })
-  }
-
   onSearch = (query) => {
 
     this.setState( {query: query} )
