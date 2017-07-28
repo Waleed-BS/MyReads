@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as BooksAPI from './utils/BooksAPI.js'
+import Books from './Books.js'
 
-class Search extends Component {
+class Search extends React.Component {
 
   static propTypes = {
     onChangeShelf: PropTypes.func.isRequired
@@ -14,23 +15,45 @@ class Search extends Component {
     foundBooks: []
   }
 
-  //  Look up a book you already have and check what shelf it's on in search
-  // You'll need to reconcile search and your shelves
+
+  componentWillReceiveProps() {
+    BooksAPI.getAll().then( (books) => {
+      this.setState({booksArray: books})
+    })
+  }
+
   onSearch = (query) => {
 
     this.setState( {query: query} )
     if(query === undefined || query === "") {
-      return this.setState( {query: "", foundBooks: []} )
+      this.setState( {query: "", foundBooks: []} )
     }
 
     BooksAPI.search(query, 20).then((result) => {
       if(result === undefined || result.error === 'empty query') {
-        return this.setState({foundBooks: []})
+        this.setState({foundBooks: []})
       }
-      return this.setState({foundBooks: result})
+      else {
+        const updateExistingBooks = result.map((result2) => {
+          const match =  this.props.books.find( (existingBook) => existingBook.id === result2.id )
+          return match ? match : result2
+        })
+        this.setState({foundBooks: updateExistingBooks})
+      }
     })
 
   }
+
+  // onChangeShelf = (book, shelf) => {
+  //   console.count("onChangeShelf in search")
+  //   book.shelf = shelf
+  //   BooksAPI.update(book, shelf).then(() => {
+  //     console.count("BooksAPI.update in search")
+  //     this.setState(state => {
+  //       booksArray: this.state.filter(b => b.id !== book.id).concat([ book ])
+  //     })
+  //   })
+  // }
 
   render() {
 
@@ -45,27 +68,28 @@ class Search extends Component {
 
     else {
 
-      booksToDisplay = foundBooks.map((foundBook) => (
-
-        <li key={foundBook.id}>
-          <div className="book">
-            <div className="book-top">
-              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${foundBook.imageLinks.thumbnail})` }}></div>
-              <div className="book-shelf-changer">
-                <select id={foundBook.id} value={foundBook.shelf} onChange={onChangeShelf}>
-                  <option value="none" disabled>Move to...</option>
-                  <option value="currentlyReading">Currently Reading</option>
-                  <option value="wantToRead">Want to Read</option>
-                  <option value="read">Read</option>
-                  <option value="none">None</option>
-                </select>
-              </div>
-            </div>
-            <div className="book-title">{foundBook.title}</div>
-            <div className="book-authors">{foundBook.authors}</div>
-          </div>
-        </li>
-      ))
+      booksToDisplay =
+      <Books books={foundBooks} onChangeShelf={onChangeShelf}/>
+      //foundBooks.map((foundBook) => (
+        // <li key={foundBook.id}>
+        //   <div className="book">
+        //     <div className="book-top">
+        //       <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${foundBook.imageLinks.thumbnail})` }}></div>
+        //       <div className="book-shelf-changer">
+        //         <select id={foundBook.id} value={foundBook.shelf} onChange={(event) => onChangeShelf(foundBook, event.target.value)}>
+        //           <option value="none" disabled>Move to...</option>
+        //           <option value="currentlyReading">Currently Reading</option>
+        //           <option value="wantToRead">Want to Read</option>
+        //           <option value="read">Read</option>
+        //           <option value="none">None</option>
+        //         </select>
+        //       </div>
+        //     </div>
+        //     <div className="book-title">{foundBook.title}</div>
+        //     <div className="book-authors">{foundBook.authors}</div>
+        //   </div>
+        // </li>
+      // ))
     }
 
     return (

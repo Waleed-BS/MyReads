@@ -8,7 +8,7 @@ import './App.css'
 class BooksApp extends React.Component {
 
   state = {
-    booksArray: []
+    booksArray: [],
   }
 
   componentDidMount() {
@@ -17,32 +17,20 @@ class BooksApp extends React.Component {
     })
   }
 
-  // onChangeShelf = (event) =>  {
-  //   BooksAPI.update({id: event.target.id}, event.target.value).then( () => {
-  //     BooksAPI.getAll().then( (books) => {
-  //       this.setState({booksArray: books})
-  //     })
-  //   })
-  // }
-
-  onChangeShelf = (book, shelf) => {
-    book.shelf = shelf
-    BooksAPI.update(book, shelf).then(response => {
-      this.setState(state => {
-        booksArray: state.booksArray.filter(b => b.id !== book.id).concat([ book ])
-      })
+  componentWillReceiveProps() {
+    BooksAPI.getAll().then( (books) => {
+      this.setState({booksArray: books})
     })
   }
 
-  // BooksAPI.update(book, shelf).then(() => {
-  //       book.shelf = shelf
-  //
-  //       // Filter out the book and append it to the end of the list
-  //       // so it appears at the end of whatever shelf it was added to.
-  //       this.setState(state => ({
-  //         books: state.books.filter(b => b.id !== book.id).concat([ book ])
-  //       }))
-  //     })
+  onChangeShelf = (book, shelf) => {
+    book.shelf = shelf
+    BooksAPI.update(book, shelf).then(() => {
+      this.setState({
+        booksArray: this.state.booksArray.filter(b => b.id !== book.id).concat([ book ])
+      })
+    })
+  }
 
   render() {
 
@@ -71,7 +59,10 @@ class BooksApp extends React.Component {
         )}/>
 
         <Route path='/search' render={ () => (
-            <Search onChangeShelf={this.onChangeShelf}/>
+            <Search
+              books={booksArray}
+              onChangeShelf={this.onChangeShelf}
+            />
         )}/>
 
       </div>
