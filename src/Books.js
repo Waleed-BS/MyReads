@@ -13,12 +13,13 @@ class Books extends Component {
     const { books, onChangeShelf } = this.props
 
     return (
+
       <ol className="books-grid">
         {books.map( (book) => (
           <li key={book.id}>
             <div className="book">
               <div className="book-top">
-                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                <div className="book-cover" style={ book && book.imageLinks && { width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                 <div className="book-shelf-changer">
                   <select id={book.id} value={book.shelf} onChange={(event) => onChangeShelf(book, event.target.value)}>
                     <option value="none" disabled>Move to...</option>
