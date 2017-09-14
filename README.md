@@ -2,7 +2,7 @@
 
 ## Description
 
-This web app alows you to categorize books from a given backend server to different shelves (Read, Currently Reading, Want to Read). 
+This web app allows you to categorize books from a given backend server to different shelves (Read, Currently Reading, Want to Read). 
 
 ## Installing 
 
