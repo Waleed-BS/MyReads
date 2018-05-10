@@ -1,18 +1,20 @@
 # MyReads: A Book Tracking App 
 
-## Description
+This web application allows you to categorize books from a given backend server to different shelves (Read, Currently Reading, Want to Read). 
 
-This web app allows you to categorize books from a given backend server to different shelves (Read, Currently Reading, Want to Read). 
+## Usage
+### Installing Dependencies:
 
-## Installing 
-
-````
-$ git clone https://github.com/Waleed-BS/MyReads.git
+```
 $ cd MyReads
 $ npm install
-$ npm start
-````
+```
 
-## Demo 
+### Starting Webpack Dev Server:
+```
+$ npm start
+```
+
+### Demo 
 
 https://my--reads.herokuapp.com/
