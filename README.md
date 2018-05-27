@@ -2,15 +2,27 @@
 
 This web application allows you to categorize books from a given backend server to different shelves (Read, Currently Reading, Want to Read). 
 
-## Usage
-### Installing Dependencies:
+## Documentation
+
+### Prerequisites
+
+[**Node.js**](https://nodejs.org/en/) must be installed installed.
+
+### Install
+
+Git clone this repository then change your current directory. 
 
 ```
+$ git clone https://github.com/Waleed-BS/MyReads
 $ cd MyReads
+```
+Install dependencies:
+```
 $ npm install
 ```
 
-### Starting Webpack Dev Server:
+### Run
+
 ```
 $ npm start
 ```
@@ -18,3 +30,6 @@ $ npm start
 ### Demo 
 
 https://my--reads.herokuapp.com/
+
+## License
+The contents of this repository are covered under the [MIT License](https://github.com/Waleed-BS/MyReads/blob/master/LICENSE).
