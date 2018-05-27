@@ -6,7 +6,7 @@ This web application allows you to categorize books from a given backend server 
 
 ### Prerequisites
 
-[**Node.js**](https://nodejs.org/en/) must be installed installed.
+[**Node.js**](https://nodejs.org/en/) must be installed.
 
 ### Install
 
